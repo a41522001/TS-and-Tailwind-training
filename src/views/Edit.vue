@@ -17,6 +17,7 @@
   import { storeToRefs } from "pinia";
   import { type Note } from "@/model/index";
   import AddAndEditNote from "@/components/AddAndEditNote.vue";
+  import { useWatchCharacter } from "@/composables/useWatchCharacter";
   const noteStore = useNoteStore();
   const { notes } = storeToRefs(noteStore);
   const route = useRoute();
@@ -30,6 +31,7 @@
   const prePage = (): void => {
     router.back();
   }
+  useWatchCharacter(newNote, 50);
   onMounted(() => {
     const id: number = Number(route.params.id);
     const note: Note = notes.value.find(note => note.id === id)!;

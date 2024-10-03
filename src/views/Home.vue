@@ -24,6 +24,7 @@
   import { useNoteStore } from "@/stores/noteStore";
   import { storeToRefs } from "pinia";
   import { type Note } from "@/model/index";
+  import { useWatchCharacter } from "@/composables/useWatchCharacter";
   const noteStore = useNoteStore();
   const { notes } = storeToRefs(noteStore);
   const newNote = ref<string>("");
@@ -39,4 +40,5 @@
     newNote.value = "";
     textarea.value.textareaFocus();
   }
+  useWatchCharacter(newNote, 50);
 </script>
