@@ -21,7 +21,11 @@ export const useNoteStore = defineStore('note', () => {
     notes.splice(index, 1);
   }
   const editNote = (id: number, content: string): void => {
-    notes[id].content = content;
+    notes.forEach(note => {
+      if(note.id === id) {
+        note.content = content;
+      }
+    })
   }
   return { notes, addNote, delNote, editNote }
 })
