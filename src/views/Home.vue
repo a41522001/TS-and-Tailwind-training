@@ -8,12 +8,9 @@
     </template>
   </AddAndEditNote>
   <div class="mt-5">
-    <Notes 
-      v-for="note in notes" 
-      :key="note.id"
-      :note="note" 
-      class="mb-5">
-    </Notes>
+    <div v-for="note in notes" :key="note.id" class="mb-5">
+      <Notes :note="note" />
+    </div>
   </div>
 </template>
 
