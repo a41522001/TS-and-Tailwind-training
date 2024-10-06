@@ -8,18 +8,29 @@
       <button @click="delNote" class="grow py-3 text-sky-500 border-t">Delete</button>
     </div>
   </div>
+  <DelDialog v-model="dialog.delDialog" :id="id"/>
 </template>
 
 <script setup lang="ts">
+  import { ref, reactive } from "vue";
   import { useRouter } from "vue-router";
-  import { useNoteStore } from "@/stores/noteStore";
   import { type Note } from "@/model/index";
-  const noteStore = useNoteStore();
+  import DelDialog from "./DelDialog.vue";
   const router = useRouter();
-  const props = defineProps<{ note: Note }>();
+  interface Props {
+    note: Note;
+  }
+  type Dialog = {
+    delDialog: boolean;
+  }
+  const props = defineProps<Props>();
+  const dialog: Dialog = reactive({
+    delDialog: false,
+  })
+  const id = ref<number>(-1);
   const delNote = (): void => {
-    const id = props.note.id;
-    noteStore.delNote(id);
+    dialog.delDialog = true;
+    id.value = props.note.id;
   }
   const editNote = (): void => {
     router.push(`/edit/${props.note.id}`);

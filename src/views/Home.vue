@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, reactive } from "vue";
+  import { ref } from "vue";
   import Notes from "@/components/Note.vue";
   import AddAndEditNote from "@/components/AddAndEditNote.vue";
   import { useNoteStore } from "@/stores/noteStore";
